@@ -16,7 +16,7 @@
 # for line in data:
 # print(line)
 # data.close()
-
+import os
 def selectAllReadPhoneNumber ():
     phoneBook = readData('C:/1Stud_GB/PythonLessons/L8/phonebook.txt')
     for i in phoneBook:
@@ -25,40 +25,50 @@ def selectSomethingReadPhoneNumber ():
     print ("selectSomething 2")
 
 def readData (fileName):
-    with open(fileName) as f:
+    with open (fileName) as f:
         phoneBook = []
         for line in f:
             phoneBook.append(line.split(','))
     return phoneBook
 
 def writeData (fileName, phoneBook):
-    with open(fileName) as f:
-        f.writelines(phoneBook) 
+    with open (fileName, 'w') as f:
+        for i in phoneBook:
+            f.writelines (i)
         print ("Data added and saved")
 
-def addPerson (phoneBook):
+def addPerson ():
+    phoneBook = readData('C:/1Stud_GB/PythonLessons/L8/phonebook.txt')
     print ("Entered data:")
-    number = max(len(phoneBook) + 1)
+    number = len(phoneBook) + 1
     surname = str(input("Entered surname:"))
     nameFirst = str(input("Entered first name:"))
     nameSecond = str(input("Entered second name:"))
-    phoneNumber = int(input("Entered telephone number:"))
+    phoneNumber = str(input("Entered telephone number:"))
     phoneBook.append([number, surname, nameFirst, nameSecond, phoneNumber])
+    print (phoneBook)
     writeData('C:/1Stud_GB/PythonLessons/L8/phonebook.txt', phoneBook)
 
+clear = lambda: os.system ('cls')
+clear()
 
 print ('''HELLO, USER 
         \n [1] -- press for SHOW ALL 
         \n [2] -- press for SELECT 
         \n [3] -- press for ADD DATA''')
 while True:
+
+    enteredNum = int(input())
     try:
-        if (int(input()) == 1):
+        if (enteredNum == 1):
             selectAllReadPhoneNumber()
-        elif (int(input()) == 2):
+        elif (enteredNum == 2):
             selectSomethingReadPhoneNumber()
-        elif (int(input()) == 3):
-            addPerson (readData)    
+            phoneBook = readData('C:/1Stud_GB/PythonLessons/L8/phonebook.txt')
+            phoneBook.append([5, 'H', 'R', 'T', '123'])
+            writeData ('C:/1Stud_GB/PythonLessons/L8/phonebook.txt', phoneBook)
+        elif (enteredNum == 3):
+            addPerson ()    
         else:
             print("Your number out of range. Try again")
             break
