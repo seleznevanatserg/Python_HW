@@ -34,13 +34,15 @@ def readData (fileName):
 def writeData (fileName, phoneBook):
     with open (fileName, 'w') as f:
         for i in phoneBook:
-            f.writelines (i)
+            print (i)
+            f.write (','.join(i))
+            
         print ("Data added and saved")
 
 def addPerson ():
     phoneBook = readData('C:/1Stud_GB/PythonLessons/L8/phonebook.txt')
     print ("Entered data:")
-    number = len(phoneBook) + 1
+    number = str(len(phoneBook) + 1)
     surname = str(input("Entered surname:"))
     nameFirst = str(input("Entered first name:"))
     nameSecond = str(input("Entered second name:"))
@@ -59,21 +61,21 @@ print ('''HELLO, USER
 while True:
 
     enteredNum = int(input())
-    try:
-        if (enteredNum == 1):
-            selectAllReadPhoneNumber()
-        elif (enteredNum == 2):
-            selectSomethingReadPhoneNumber()
-            phoneBook = readData('C:/1Stud_GB/PythonLessons/L8/phonebook.txt')
-            phoneBook.append([5, 'H', 'R', 'T', '123'])
-            writeData ('C:/1Stud_GB/PythonLessons/L8/phonebook.txt', phoneBook)
-        elif (enteredNum == 3):
-            addPerson ()    
-        else:
-            print("Your number out of range. Try again")
-            break
-    except:
-        print ("You entered something, but it's not number")
+    # try:
+    if (enteredNum == 1):
+        selectAllReadPhoneNumber()
+    elif (enteredNum == 2):
+        selectSomethingReadPhoneNumber()
+        phoneBook = readData('C:/1Stud_GB/PythonLessons/L8/phonebook.txt')
+        phoneBook.append(['5', 'H', 'R', 'T', '123\n'])
+        writeData ('C:/1Stud_GB/PythonLessons/L8/phonebook.txt', phoneBook)
+    elif (enteredNum == 3):
+        addPerson ()    
+    else:
+        print("Your number out of range. Try again")
+        break
+    # except:
+    #     print ("You entered something, but it's not number")
 
 
 
